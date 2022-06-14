@@ -67,8 +67,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivPost"
+        android:layout_alignBottom="@+id/btnComment"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="0dp"
         android:layout_toEndOf="@+id/btnComment"
         android:background="#00FFFFFF"
         app:srcCompat="@drawable/direct" />
@@ -135,8 +137,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivPost"
+        android:layout_alignBottom="@+id/btnLike"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="0dp"
         android:layout_toEndOf="@+id/btnLike"
         android:background="#00FFFFFF"
         app:srcCompat="@drawable/ufi_comment" />
