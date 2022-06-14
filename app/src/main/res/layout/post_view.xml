@@ -18,10 +18,10 @@
         android:text=""
         android:textColor="@color/black"
         tools:text="Who is your @cryptocomofficial Overtake King from the #AzerbaijanGP? 👀
+        Cast your vote over on our Twitter to see who wins!
+        #F1 #Formula1 #FFTB"
 
-Cast your vote over on our Twitter to see who wins!
-
-#F1 #Formula1 #FFTB" />
+        />
 
     <TextView
         android:id="@+id/tvUsernameDescription"
