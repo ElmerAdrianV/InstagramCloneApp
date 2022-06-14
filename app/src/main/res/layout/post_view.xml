@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvUsernameDescription"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="15dp"
+        android:text=""
+        android:textColor="@color/black"
+        tools:text="Who is your @cryptocomofficial Overtake King from the #AzerbaijanGP? 👀
+
+Cast your vote over on our Twitter to see who wins!
+
+#F1 #Formula1 #FFTB" />
+
+    <TextView
+        android:id="@+id/tvUsernameDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNumLikes"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="4dp"
+
+        android:text=""
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:text="elmer.adrian.v" />
+
+    <ImageButton
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivProfileUser"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="#00FFFFFF"
+        app:srcCompat="@drawable/ic_save" />
+
+    <TextView
+        android:id="@+id/tvLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLike"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tvNumLikes"
+        android:text="@string/likes"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/btnMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivProfileUser"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/btnComment"
+        android:background="#00FFFFFF"
+        app:srcCompat="@drawable/direct" />
+
+    <ImageButton
+        android:id="@+id/btnLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivProfileUser"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:background="#00FFFFFF"
+        app:srcCompat="@drawable/ufi_heart" />
+
+    <ImageView
+        android:id="@+id/ivProfileUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivPost"
+        android:layout_marginTop="5dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/ivPost"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ivProfileUser"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_toEndOf="@+id/ivPost"
+        android:text=""
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:text="elmer.adrian.v" />
+
+    <ImageButton
+        android:id="@+id/btnOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ivProfileUser"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="#00FFFFFF"
+        app:srcCompat="@drawable/ufi_more" />
+
+    <ImageButton
+        android:id="@+id/btnComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivProfileUser"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/btnLike"
+        android:background="#00FFFFFF"
+        app:srcCompat="@drawable/ufi_comment" />
+
+    <TextView
+        android:id="@+id/tvNumLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLike"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:text="56,419" />
+</RelativeLayout>
