@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     ParseUser currentUser;
-
+    EditText etDescription;
 
 
     @Override
@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         Button btnCaptureImage;
         ImageView ivPostImage;
         Button btnSubmit;
-        EditText etDescription;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -46,24 +45,46 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit=findViewById(R.id.btnSubmit);
         currentUser = ParseUser.getCurrentUser();
         queryPost();
-
+        btnSubmit.setOnClickListener(v -> {
+            String description=etDescription.getText().toString();
+            if(description.isEmpty()){
+                Toast.makeText(MainActivity.this,"Please, fill the description", Toast.LENGTH_LONG)
+                        .show();
+            }
+            else{
+                ParseUser user = ParseUser.getCurrentUser();
+                savePost(description,currentUser);
+            }
+        });
 
     }
 
     private void queryPost() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
-        query.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> posts, ParseException e) {
-                if(e!=null){
-                    Log.e(TAG, "done: something wrong with the query",e );
-                    return;
-                }
-                for (Post post:posts){
-                    Log.d(TAG, "post: "+post.getDescription()+" username:"+post.getUser().getUsername());
-                }
+        query.findInBackground((posts, e) -> {
+            if(e!=null){
+                Log.e(TAG, "done: something wrong with the query",e );
+                return;
             }
+            for (Post post:posts){
+                Log.d(TAG, "post: "+post.getDescription()+" username:"+post.getUser().getUsername());
+            }
+        });
+    }
+    private void savePost(String description, ParseUser currentUser) {
+        Post post = new Post();
+        post.setDescription(description);
+        //post.setImage();
+        post.setUser(currentUser);
+        post.saveInBackground(e -> {
+            if (e != null) {
+                Log.e(TAG, "error while saving: ",e );
+                Toast.makeText(MainActivity.this,"error while saving", Toast.LENGTH_SHORT)
+                        .show();
+            }
+            Log.i(TAG, "Post save successful!");
+            etDescription.setText("");
         });
     }
 
