@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_icon_background.xml" value="0.1925" />
+        <entry key="app/src/main/res/drawable/postframe.xml" value="0.1775" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.27877235851068605" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_new_post.xml" value="0.6090544769729394" />
