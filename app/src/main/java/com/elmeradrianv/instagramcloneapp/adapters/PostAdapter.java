@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.elmeradrianv.instagramcloneapp.MainActivity;
 import com.elmeradrianv.instagramcloneapp.Post;
 import com.elmeradrianv.instagramcloneapp.R;
 
@@ -70,6 +71,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         TextView tvUsernameDescription;
         TextView tvTimeAgo;
         ImageView ivPost;
+        ImageView ivProfilePost;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -79,22 +81,29 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvUsernameDescription=itemView.findViewById(R.id.tvUsernameDescription);
             tvTimeAgo = itemView.findViewById(R.id.tvTimeAgo);
             ivPost=itemView.findViewById(R.id.ivPost);
+            ivProfilePost=itemView.findViewById(R.id.ivPostImage);
         }
 
         public void bind(Post post) {
+            int radiusIP = 100; // corner radius, higher value = more rounded
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
             tvUsernameDescription.setText(post.getUser().getUsername());
-            tvTimeAgo.setText(calculateTimeAgo(post.getCreatedAt()));
+            tvTimeAgo.setText(calculateTimeAgo(post.getCreatedAt(),context));
             Glide.with(context).load(post.getImage().getUrl())
                     .apply(new RequestOptions()
                             .centerCrop() // scale image to fill the entire ImageView
-
                     )
                     .into(ivPost);
+//            Glide.with(context).load(post.getUser().getParseFile("profilePhoto").getUrl())
+//                    .apply(new RequestOptions()
+//                            .centerCrop() // scale image to fill the entire ImageView
+//                            .transform(new RoundedCorners(radiusIP))
+//                    )
+//                    .into(ivProfilePost);
         }
     }
-    public static String calculateTimeAgo(Date createdAt) {
+    public static String calculateTimeAgo(Date createdAt,Context context) {
 
         int SECOND_MILLIS = 1000;
         int MINUTE_MILLIS = 60 * SECOND_MILLIS;
@@ -108,17 +117,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
             final long diff = now - time;
             if (diff < MINUTE_MILLIS) {
-                return "just now";
+                return context.getString(R.string.just_now);
             } else if (diff < 2 * MINUTE_MILLIS) {
-                return "a minute ago";
+                return context.getString(R.string.a_minute_ago);
             } else if (diff < 50 * MINUTE_MILLIS) {
-                return diff / MINUTE_MILLIS + " m";
+                return diff / MINUTE_MILLIS + context.getString(R.string.min);
             } else if (diff < 90 * MINUTE_MILLIS) {
-                return "an hour ago";
+                return context.getString(R.string.an_hour_ago);
             } else if (diff < 24 * HOUR_MILLIS) {
-                return diff / HOUR_MILLIS + " h";
+                return diff / HOUR_MILLIS + context.getString(R.string.hours);
             } else if (diff < 48 * HOUR_MILLIS) {
-                return "yesterday";
+                return context.getString(R.string.yesterday);
             } else {
                 return diff / DAY_MILLIS + " d";
             }
