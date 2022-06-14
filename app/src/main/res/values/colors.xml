@@ -19,4 +19,9 @@
     <color name="mcam_color_light">#FAFAFA</color>
     <color name="mcam_color_dark">#424242</color>
 
+    <color name="purple_insta">#8134AF</color>
+    <color name="pink_insta">#DD2A7B</color>
+    <color name="orange_insta">#F58529</color>
+    <color name="yellow_insta">#FEDA77</color>
+
 </resources>
