@@ -92,7 +92,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvTimeAgo.setText(calculateTimeAgo(post.getCreatedAt(),context));
             Glide.with(context).load(post.getImage().getUrl())
                     .apply(new RequestOptions()
-                            .centerCrop() // scale image to fill the entire ImageView
+                            .fitCenter() // scale image to fill the entire ImageView
                     )
                     .into(ivPost);
             Glide.with(context).load(post.getUser().getParseFile("profilePhoto").getUrl())
@@ -121,15 +121,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             } else if (diff < 2 * MINUTE_MILLIS) {
                 return context.getString(R.string.a_minute_ago);
             } else if (diff < 50 * MINUTE_MILLIS) {
-                return diff / MINUTE_MILLIS + context.getString(R.string.min);
+                return diff / MINUTE_MILLIS + " "+context.getString(R.string.min);
             } else if (diff < 90 * MINUTE_MILLIS) {
                 return context.getString(R.string.an_hour_ago);
             } else if (diff < 24 * HOUR_MILLIS) {
-                return diff / HOUR_MILLIS + context.getString(R.string.hours);
+                return diff / HOUR_MILLIS + " "+context.getString(R.string.hours);
             } else if (diff < 48 * HOUR_MILLIS) {
                 return context.getString(R.string.yesterday);
             } else {
-                return diff / DAY_MILLIS + " d";
+                return diff / DAY_MILLIS + " "+context.getString(R.string.day);
             }
         } catch (Exception e) {
             Log.i("Error:", "getRelativeTimeAgo failed", e);
