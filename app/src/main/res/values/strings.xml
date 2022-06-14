@@ -11,8 +11,8 @@
     <string name="likes">likes</string>
     <string name="just_now">just now</string>
     <string name="yesterday">yesterday</string>
-    <string name="hours">\" hours\"</string>
+    <string name="hours">hours</string>
     <string name="an_hour_ago">an hour ago</string>
-    <string name="min">\" min\"</string>
+    <string name="min">min</string>
     <string name="a_minute_ago">a minute ago</string>
 </resources>
