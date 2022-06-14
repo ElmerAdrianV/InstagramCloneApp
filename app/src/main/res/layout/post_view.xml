@@ -41,7 +41,7 @@
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivProfileUser"
+        android:layout_below="@+id/ivPost"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
@@ -64,7 +64,7 @@
         android:id="@+id/btnMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivProfileUser"
+        android:layout_below="@+id/ivPost"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/btnComment"
@@ -75,7 +75,7 @@
         android:id="@+id/btnLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivProfileUser"
+        android:layout_below="@+id/ivPost"
         android:layout_alignParentStart="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
@@ -83,15 +83,17 @@
         app:srcCompat="@drawable/ufi_heart" />
 
     <ImageView
-        android:id="@+id/ivProfileUser"
+        android:id="@+id/ivPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivPost"
+        android:layout_below="@+id/ivProfileUser"
         android:layout_marginTop="5dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/ivPost"
+        android:id="@+id/ivProfileUser"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_alignParentStart="true"
@@ -100,16 +102,17 @@
         android:layout_marginTop="10dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
+        app:srcCompat="@color/purple_500"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ivProfileUser"
+        android:layout_above="@+id/ivPost"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="15dp"
-        android:layout_toEndOf="@+id/ivPost"
+        android:layout_toEndOf="@+id/ivProfileUser"
         android:text=""
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -119,7 +122,7 @@
         android:id="@+id/btnOptions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ivProfileUser"
+        android:layout_above="@+id/ivPost"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="15dp"
@@ -130,7 +133,7 @@
         android:id="@+id/btnComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivProfileUser"
+        android:layout_below="@+id/ivPost"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/btnLike"
@@ -145,8 +148,18 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:text=""
+        android:text="0"
         android:textColor="@color/black"
         android:textStyle="bold"
         tools:text="56,419" />
+
+    <TextView
+        android:id="@+id/tvTimeAgo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvDescription"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="4dp"
+        tools:text="a minute ago" />
 </RelativeLayout>
