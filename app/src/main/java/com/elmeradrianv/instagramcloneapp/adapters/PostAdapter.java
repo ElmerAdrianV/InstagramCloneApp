@@ -71,7 +71,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         TextView tvUsernameDescription;
         TextView tvTimeAgo;
         ImageView ivPost;
-        ImageView ivProfilePost;
+        ImageView ivProfileUser;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -81,7 +81,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvUsernameDescription=itemView.findViewById(R.id.tvUsernameDescription);
             tvTimeAgo = itemView.findViewById(R.id.tvTimeAgo);
             ivPost=itemView.findViewById(R.id.ivPost);
-            ivProfilePost=itemView.findViewById(R.id.ivPostImage);
+            ivProfileUser=itemView.findViewById(R.id.ivProfileUser);
         }
 
         public void bind(Post post) {
@@ -95,12 +95,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                             .centerCrop() // scale image to fill the entire ImageView
                     )
                     .into(ivPost);
-//            Glide.with(context).load(post.getUser().getParseFile("profilePhoto").getUrl())
-//                    .apply(new RequestOptions()
-//                            .centerCrop() // scale image to fill the entire ImageView
-//                            .transform(new RoundedCorners(radiusIP))
-//                    )
-//                    .into(ivProfilePost);
+            Glide.with(context).load(post.getUser().getParseFile("profilePhoto").getUrl())
+                    .apply(new RequestOptions()
+                            .centerCrop() // scale image to fill the entire ImageView
+                            .transform(new RoundedCorners(radiusIP))
+                    )
+                    .into(ivProfileUser);
         }
     }
     public static String calculateTimeAgo(Date createdAt,Context context) {
