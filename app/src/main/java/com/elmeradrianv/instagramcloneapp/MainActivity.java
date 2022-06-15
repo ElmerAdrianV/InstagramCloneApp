@@ -12,13 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.elmeradrianv.instagramcloneapp.adapters.PostAdapter;
-import com.parse.FindCallback;
-import com.parse.ParseException;
+
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class   MainActivity extends AppCompatActivity {
@@ -77,15 +74,12 @@ public class   MainActivity extends AppCompatActivity {
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         // Setup refresh listener which triggers new data loading
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
-                fetchFeedAsync();
-                swipeContainer.setRefreshing(false);
-            }
+        swipeContainer.setOnRefreshListener(() -> {
+            // Your code to refresh the list here.
+            // Make sure you call swipeContainer.setRefreshing(false)
+            // once the network request has completed successfully.
+            fetchFeedAsync();
+            swipeContainer.setRefreshing(false);
         });
 
         // Configure the refreshing colors
