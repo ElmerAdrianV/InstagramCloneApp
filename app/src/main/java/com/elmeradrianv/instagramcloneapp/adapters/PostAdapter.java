@@ -91,7 +91,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvUsername.setText(post.getUser().getUsername());
             tvUsernameDescription.setText(post.getUser().getUsername());
             tvTimeAgo.setText(calculateTimeAgo(post.getCreatedAt(),context));
-            tvNumLikes.setText(post.getLikes()+"");
+            tvNumLikes.setText(Long.toString(post.getLikes()));
             Glide.with(context).load(post.getImage().getUrl())
                     .apply(new RequestOptions()
                             .fitCenter() // scale image to fill the entire ImageView
