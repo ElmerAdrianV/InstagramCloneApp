@@ -69,6 +69,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         TextView tvUsername;
         TextView tvUsernameDescription;
         TextView tvTimeAgo;
+        TextView tvNumLikes;
         ImageView ivPost;
         ImageView ivProfileUser;
 
@@ -81,6 +82,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvTimeAgo = itemView.findViewById(R.id.tvTimeAgo);
             ivPost=itemView.findViewById(R.id.ivPost);
             ivProfileUser=itemView.findViewById(R.id.ivProfileUserPost);
+            tvNumLikes=itemView.findViewById(R.id.tvNumLikes);
         }
 
         public void bind(Post post) {
@@ -89,6 +91,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvUsername.setText(post.getUser().getUsername());
             tvUsernameDescription.setText(post.getUser().getUsername());
             tvTimeAgo.setText(calculateTimeAgo(post.getCreatedAt(),context));
+            tvNumLikes.setText(post.getLikes()+"");
             Glide.with(context).load(post.getImage().getUrl())
                     .apply(new RequestOptions()
                             .fitCenter() // scale image to fill the entire ImageView

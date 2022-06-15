@@ -14,6 +14,7 @@ public class Post extends ParseObject {
     public static final String KEY_IMAGE="image";
     public static final String KEY_USER="user";
     public static final String KEY_CREATED_AT="createdAt";
+    public static final String KEY_LIKES="likes";
 
 
     public String getDescription(){
@@ -41,5 +42,9 @@ public class Post extends ParseObject {
     public Date getCreateAt(){
         return getDate(KEY_CREATED_AT);
     }
+
+    public long getLikes(){return getLong(KEY_LIKES);}
+    public void getLikes(Long likes){put(KEY_LIKES,likes);}
+
 
 }
