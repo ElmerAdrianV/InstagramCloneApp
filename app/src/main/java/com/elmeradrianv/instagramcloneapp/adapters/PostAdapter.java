@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.elmeradrianv.instagramcloneapp.MainActivity;
 import com.elmeradrianv.instagramcloneapp.Post;
 import com.elmeradrianv.instagramcloneapp.R;
 
@@ -81,7 +80,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             tvUsernameDescription=itemView.findViewById(R.id.tvUsernameDescription);
             tvTimeAgo = itemView.findViewById(R.id.tvTimeAgo);
             ivPost=itemView.findViewById(R.id.ivPost);
-            ivProfileUser=itemView.findViewById(R.id.ivProfileUser);
+            ivProfileUser=itemView.findViewById(R.id.ivProfileUserPost);
         }
 
         public void bind(Post post) {
