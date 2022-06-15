@@ -53,15 +53,19 @@ public class   MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
+        Intent intent;
         switch (item.getItemId()){
             case R.id.btnLogout:
                 ParseUser.logOut();
                 currentUser = ParseUser.getCurrentUser(); // this will now be null
-                //Log.d(TAG, "onOptionsItemSelected: "+currentUser);
-                Intent i = new Intent(this, LoginActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // this makes sure the Back button won't work
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // same as above
-                startActivity(i);
+                intent = new Intent(this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // this makes sure the Back button won't work
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // same as above
+                startActivity(intent);
+                return true;
+            case R.id.btnPost:
+                intent  = new Intent(this, NewPostActivity.class);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

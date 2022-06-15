@@ -35,6 +35,8 @@ public class   NewPostActivity extends AppCompatActivity {
     ParseUser currentUser;
     EditText etDescription;
     ImageView ivPostImage;
+    Button btnCaptureImage;
+    Button btnSubmit;
 
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public String photoFileName = "photo.jpg";
@@ -44,34 +46,26 @@ public class   NewPostActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Button btnCaptureImage;
 
-        Button btnSubmit;
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_new_post);
 
 
         etDescription=findViewById(R.id.etDescription);
-        btnCaptureImage=findViewById(R.id.btnCaptureImage);
+        btnCaptureImage = findViewById(R.id.btnCaptureImage);
         ivPostImage=findViewById(R.id.ivPostImage);
         btnSubmit=findViewById(R.id.btnSubmit);
         currentUser = ParseUser.getCurrentUser();
         queryPost();
 
-        btnCaptureImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchCamera();
-            }
-        });
+        btnCaptureImage.setOnClickListener(v -> launchCamera());
 
         btnSubmit.setOnClickListener(v -> {
             String description=etDescription.getText().toString();
             if(description.isEmpty()){
                 Toast.makeText(NewPostActivity.this,"Please, fill the description", Toast.LENGTH_LONG)
                         .show();
-
             }
             else{
                 if(photoFile==null || ivPostImage.getDrawable()==null ){
