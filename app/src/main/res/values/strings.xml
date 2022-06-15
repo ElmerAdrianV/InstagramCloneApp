@@ -16,4 +16,5 @@
     <string name="min">min</string>
     <string name="a_minute_ago">a minute ago</string>
     <string name="day">day</string>
+    <string name="comment_here">Comment here!</string>
 </resources>
