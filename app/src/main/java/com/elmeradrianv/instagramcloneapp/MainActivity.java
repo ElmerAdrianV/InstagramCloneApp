@@ -142,17 +142,10 @@ public class   MainActivity extends AppCompatActivity {
     // Append the next page of data into the adapter
     // This method probably sends out a network request and appends new data items to your adapter.
     public void loadNextDataFromApi(int offset) {
-
-        try{
-
             queryPosts(currentOffset+NUMBER_POSTS_REQUEST);
             int itemCountAdded=adapter.getItemCount()-currentOffset-1;
             adapter.notifyItemRangeInserted(currentOffset,itemCountAdded);
             currentOffset+=NUMBER_POSTS_REQUEST;
-        }
-        catch (Exception e){
-
-        }
     }
 
 
