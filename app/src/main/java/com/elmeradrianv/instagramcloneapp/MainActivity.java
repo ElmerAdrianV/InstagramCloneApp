@@ -21,15 +21,19 @@ import com.parse.ParseUser;
 
 public class   MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
-
+    private static final int NUMBER_POSTS_REQUEST=5;
     ParseUser currentUser;
     private SwipeRefreshLayout swipeContainer;
     protected PostAdapter adapter;
+    // Store a member variable for the listener
+    private EndlessRecyclerViewScrollListener scrollListener;
+    private  int currentOffset=NUMBER_POSTS_REQUEST;//Count number of tweets in the timeline
+    RecyclerView rvPosts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        RecyclerView rvPosts;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         createSwipeRefresh();
@@ -37,15 +41,28 @@ public class   MainActivity extends AppCompatActivity {
         currentUser=ParseUser.getCurrentUser();
         rvPosts = findViewById(R.id.rvPosts);
 
+
         // initialize the array that will hold posts and create a PostsAdapter
         adapter = new PostAdapter(this);
 
         // set the adapter on the recycler view
         rvPosts.setAdapter(adapter);
-        // set the layout manager on the recycler view
-        rvPosts.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rvPosts.setLayoutManager(linearLayoutManager);
         // query posts from Parstagram
-        queryPosts();
+        queryPosts(currentOffset);
+        // Retain an instance so that you can call `resetState()` for fresh searches
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page,int totalItemsCount,RecyclerView view) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+                loadNextDataFromApi(page);
+            }
+        };
+        // Adds the scroll listener to RecyclerView
+        rvPosts.addOnScrollListener(scrollListener);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -92,18 +109,22 @@ public class   MainActivity extends AppCompatActivity {
 
     private void fetchFeedAsync() {
         adapter.clear();
-        queryPosts();
-
+        queryPosts(NUMBER_POSTS_REQUEST);
+        currentOffset=NUMBER_POSTS_REQUEST;
     }
 
-    private void queryPosts() {
+    private void queryPosts(int currentLimit) {
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         // include data referred by user key
         query.include(Post.KEY_USER);
         query.include(Post.KEY_IMAGE);
         // limit query to latest 20 items
-        query.setLimit(20);
+        query.setLimit(currentLimit);
+        if(currentLimit-NUMBER_POSTS_REQUEST>0){
+            query.setSkip(currentLimit-NUMBER_POSTS_REQUEST); // skip the first 10 results
+        }
+
         // order posts by creation date (newest first)
         query.addDescendingOrder("createdAt");
         // start an asynchronous call for posts
@@ -113,10 +134,26 @@ public class   MainActivity extends AppCompatActivity {
                 Log.e(TAG, "Issue with getting posts", e);
                 return;
             }
-
             // save received posts to list and notify adapter of new data
             adapter.addAll(posts);
         });
     }
+
+    // Append the next page of data into the adapter
+    // This method probably sends out a network request and appends new data items to your adapter.
+    public void loadNextDataFromApi(int offset) {
+
+        try{
+
+            queryPosts(currentOffset+NUMBER_POSTS_REQUEST);
+            int itemCountAdded=adapter.getItemCount()-currentOffset-1;
+            adapter.notifyItemRangeInserted(currentOffset,itemCountAdded);
+            currentOffset+=NUMBER_POSTS_REQUEST;
+        }
+        catch (Exception e){
+
+        }
+    }
+
 
 }
