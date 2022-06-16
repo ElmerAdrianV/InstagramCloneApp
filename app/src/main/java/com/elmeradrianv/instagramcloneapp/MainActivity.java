@@ -113,11 +113,6 @@ public class   MainActivity extends AppCompatActivity {
                 return;
             }
 
-            // for debugging purposes let's print every post description to logcat
-            for (Post post : posts) {
-                Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
-            }
-
             // save received posts to list and notify adapter of new data
             adapter.addAll(posts);
         });

@@ -1,12 +1,15 @@
 package com.elmeradrianv.instagramcloneapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +18,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.elmeradrianv.instagramcloneapp.Post;
+import com.elmeradrianv.instagramcloneapp.PostDetailView;
 import com.elmeradrianv.instagramcloneapp.R;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -64,7 +70,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public int getItemCount() {
         return posts.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tvDescription;
         TextView tvUsername;
         TextView tvUsernameDescription;
@@ -72,6 +78,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         TextView tvNumLikes;
         ImageView ivPost;
         ImageView ivProfileUser;
+        ImageButton btnLike;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -83,6 +90,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             ivPost=itemView.findViewById(R.id.ivPost);
             ivProfileUser=itemView.findViewById(R.id.ivProfileUserPost);
             tvNumLikes=itemView.findViewById(R.id.tvNumLikes);
+            btnLike =itemView.findViewById(R.id.btnLike);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Post post) {
@@ -103,6 +112,33 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                             .transform(new RoundedCorners(radiusIP))
                     )
                     .into(ivProfileUser);
+            settingOnClickBtnLike(post);
+        }
+        private void settingOnClickBtnLike(Post post){
+            btnLike.setOnClickListener(v -> {
+                //In progress, it need connect with the DB to search if the user already like the post
+                //
+                long newNumLikes=post.getLikes()+1;
+                post.setLikes(newNumLikes);
+                tvNumLikes.setText(Long.toString(newNumLikes));
+                btnLike.setImageResource(R.drawable.ic_like_active);
+                post.saveInBackground();
+            });
+        }
+        @Override
+        public void onClick(View v) {
+            //gets item position
+            int position=getAdapterPosition();
+            Toast.makeText(context,"In", Toast.LENGTH_LONG).show();
+            if(position!=RecyclerView.NO_POSITION){
+                Post post = posts.get(position);
+                //create intent for the new activity
+                Intent intent = new Intent(context, PostDetailView.class);
+                intent.putExtra(Post.class.getSimpleName(), post.getObjectId());
+                //show the activity
+                context.startActivity(intent);
+                Log.d("Onclick///", "onClick:Full view of post ");
+            }
         }
     }
     public static String calculateTimeAgo(Date createdAt,Context context) {
