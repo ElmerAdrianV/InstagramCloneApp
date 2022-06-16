@@ -21,7 +21,7 @@ import com.elmeradrianv.instagramcloneapp.Post;
 import com.elmeradrianv.instagramcloneapp.PostDetailView;
 import com.elmeradrianv.instagramcloneapp.R;
 
-import org.parceler.Parcels;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,10 +30,6 @@ import java.util.List;
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     List<Post> posts;
     Context context;
-
-    public PostAdapter() {
-        super();
-    }
 
     public PostAdapter(Context context) {
         this.posts = new ArrayList<>();
@@ -97,6 +93,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public void bind(Post post) {
             int radiusIP = 100; // corner radius, higher value = more rounded
             tvDescription.setText(post.getDescription());
+            Post.formatDescription(tvDescription);
             tvUsername.setText(post.getUser().getUsername());
             tvUsernameDescription.setText(post.getUser().getUsername());
             tvTimeAgo.setText(calculateTimeAgo(post.getCreatedAt(),context));
@@ -129,7 +126,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public void onClick(View v) {
             //gets item position
             int position=getAdapterPosition();
-            Toast.makeText(context,"In", Toast.LENGTH_LONG).show();
             if(position!=RecyclerView.NO_POSITION){
                 Post post = posts.get(position);
                 //create intent for the new activity

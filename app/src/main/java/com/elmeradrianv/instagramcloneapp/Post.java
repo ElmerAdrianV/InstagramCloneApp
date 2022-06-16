@@ -1,7 +1,11 @@
 package com.elmeradrianv.instagramcloneapp;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
+import android.widget.TextView;
 
+import com.elmeradrianv.instagramcloneapp.auxiliars.PatternEditableBuilder;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -9,10 +13,10 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import org.parceler.Parcel;
 
-import java.io.File;
+
 import java.util.Date;
+import java.util.regex.Pattern;
 
 @ParseClassName("Post")
 public class Post extends ParseObject {
@@ -63,6 +67,18 @@ public class Post extends ParseObject {
                 if (e != null) {Log.e(TAG, "Issue with getting posts", e);}
             });
             return query.get(objectId);
+    }
+    public static void formatDescription(TextView tvDescription){
+        // R.color.link_blue= #4d94ff;
+        new PatternEditableBuilder().addPattern(Pattern.compile("\\#(\\w+)"), Color.parseColor("#4d94ff"),
+                text -> {
+
+                }).into(tvDescription);
+        new PatternEditableBuilder().
+                addPattern(Pattern.compile("\\@(\\w+)"), Color.parseColor("#4d94ff"),
+                        text -> {
+                            //send intent to user profile
+                        }).into(tvDescription);
     }
 
 }
