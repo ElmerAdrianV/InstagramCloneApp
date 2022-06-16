@@ -61,6 +61,7 @@ public class Post extends ParseObject {
             ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
             // include data referred by user key
             query.include(Post.KEY_USER);
+            query.include(Post.KEY_CREATED_AT);
             query.whereEqualTo(Post.KEY_OBJECTID,objectId);
             // start an asynchronous call for posts
             query.findInBackground((posts, e) -> {

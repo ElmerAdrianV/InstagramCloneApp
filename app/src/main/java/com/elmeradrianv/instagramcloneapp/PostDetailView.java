@@ -45,7 +45,7 @@ public class PostDetailView extends AppCompatActivity {
         tvDescription.setText(post.getDescription());
         Post.formatDescription(tvDescription);
         tvUsernameDescription.setText(post.getUser().getUsername());
-        tvTimeAgo.setText(PostAdapter.calculateTimeAgo(post.getCreateAt(),this));
+        tvTimeAgo.setText(PostAdapter.calculateTimeAgo(post.getCreatedAt(),PostDetailView.this));
         setImage(post.getUser().getParseFile("profilePhoto").getUrl(),ivProfileUserPost);
 
         setImage(currentUser.getParseFile("profilePhoto").getUrl(),ivPhotoCurrentUser);
