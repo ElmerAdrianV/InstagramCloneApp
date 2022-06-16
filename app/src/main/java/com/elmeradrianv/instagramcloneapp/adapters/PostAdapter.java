@@ -74,6 +74,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         ImageView ivPost;
         ImageView ivProfileUser;
         ImageButton btnLike;
+        ImageButton btnComment;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
@@ -86,6 +87,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             ivProfileUser=itemView.findViewById(R.id.ivProfileUserPost);
             tvNumLikes=itemView.findViewById(R.id.tvNumLikes);
             btnLike =itemView.findViewById(R.id.btnLike);
+            btnComment = itemView.findViewById(R.id.btnComment);
             itemView.setOnClickListener(this);
         }
 
@@ -117,6 +119,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     )
                     .into(ivProfileUser);
             settingOnClickBtnLike(post);
+            settingOnClickBtnComment(post);
         }
         private void settingOnClickBtnLike(Post post){
             btnLike.setOnClickListener(v -> {
@@ -127,6 +130,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 tvNumLikes.setText(Long.toString(newNumLikes));
                 btnLike.setImageResource(R.drawable.ic_like_active);
                 post.saveInBackground();
+            });
+        }
+        private void settingOnClickBtnComment(Post post){
+
+            Log.d("Onclick///", "onClick:Go to commments ");
+            btnComment.setOnClickListener(v -> {
+                //create intent for the new activity
+                Intent intent = new Intent(context, PostDetailView.class);
+                intent.putExtra(Post.class.getSimpleName(), post.getObjectId());
+                //show the activity
+                context.startActivity(intent);
             });
         }
         @Override
