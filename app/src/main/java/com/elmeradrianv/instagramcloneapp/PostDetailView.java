@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.elmeradrianv.instagramcloneapp.adapters.PostAdapter;
+import com.elmeradrianv.instagramcloneapp.database.Post;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 

@@ -1,7 +1,8 @@
-package com.elmeradrianv.instagramcloneapp;
+package com.elmeradrianv.instagramcloneapp.database;
 
 import android.app.Application;
 
+import com.elmeradrianv.instagramcloneapp.BuildConfig;
 import com.parse.Parse;
 import com.parse.ParseObject;
 

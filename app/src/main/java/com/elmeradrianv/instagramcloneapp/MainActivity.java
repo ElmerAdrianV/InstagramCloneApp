@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.elmeradrianv.instagramcloneapp.adapters.PostAdapter;
 
+import com.elmeradrianv.instagramcloneapp.database.Post;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 

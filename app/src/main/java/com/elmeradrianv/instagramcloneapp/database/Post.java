@@ -1,6 +1,5 @@
-package com.elmeradrianv.instagramcloneapp;
+package com.elmeradrianv.instagramcloneapp.database;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.widget.TextView;
