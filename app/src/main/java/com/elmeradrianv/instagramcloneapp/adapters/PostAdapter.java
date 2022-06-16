@@ -90,18 +90,26 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         }
 
         public void bind(Post post) {
-            int radiusIP = 100; // corner radius, higher value = more rounded
+
             tvDescription.setText(post.getDescription());
             Post.formatDescription(tvDescription);
             tvUsername.setText(post.getUser().getUsername());
             tvUsernameDescription.setText(post.getUser().getUsername());
             tvTimeAgo.setText(calculateTimeAgo(post.getCreatedAt(),context));
             tvNumLikes.setText(Long.toString(post.getLikes()));
+            putPostImage(context,post);
+            putProfilePhoto(context,post);
+
+        }
+        private void putPostImage(Context context, Post post){
             Glide.with(context).load(post.getImage().getUrl())
                     .apply(new RequestOptions()
                             .fitCenter() // scale image to fill the entire ImageView
                     )
                     .into(ivPost);
+        }
+        private void putProfilePhoto(Context context, Post post){
+            int radiusIP = 100; // corner radius, higher value = more rounded
             Glide.with(context).load(post.getUser().getParseFile("profilePhoto").getUrl())
                     .apply(new RequestOptions()
                             .centerCrop() // scale image to fill the entire ImageView
