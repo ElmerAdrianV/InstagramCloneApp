@@ -69,7 +69,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull PostAdapter.ViewHolder holder, int position) {
         //Get the data at position
         Post post = posts.get(position);
-        //Bind the tweet with view holder
         try {
             holder.bind(post);
         } catch (ParseException e) {
@@ -123,6 +122,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             putProfilePhoto(context, post);
             likePost = getLikeStatus(post);
             setImageBtnLike();
+            settingOnClickBtnLike(post);
+            settingOnClickBtnComment(post);
         }
 
         private void putPostImage(Context context, Post post) {
@@ -141,8 +142,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                             .transform(new RoundedCorners(radiusIP))
                     )
                     .into(ivProfileUser);
-            settingOnClickBtnLike(post);
-            settingOnClickBtnComment(post);
+
         }
 
         private void setImageBtnLike() {

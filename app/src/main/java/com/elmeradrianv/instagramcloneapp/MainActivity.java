@@ -28,7 +28,7 @@ public class   MainActivity extends AppCompatActivity {
     protected PostAdapter adapter;
     // Store a member variable for the listener
     private EndlessRecyclerViewScrollListener scrollListener;
-    private  int currentOffset=NUMBER_POSTS_REQUEST;//Count number of tweets in the timeline
+    private  int currentOffset=NUMBER_POSTS_REQUEST;//Count number of posts in the timeline
     RecyclerView rvPosts;
 
     @Override
