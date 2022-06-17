@@ -121,10 +121,7 @@ public class   MainActivity extends AppCompatActivity {
         query.include(Post.KEY_IMAGE);
         // limit query to latest 20 items
         query.setLimit(currentLimit);
-        if(currentLimit-NUMBER_POSTS_REQUEST>0){
-            query.setSkip(currentLimit-NUMBER_POSTS_REQUEST); // skip the first 10 results
-        }
-
+        query.setSkip(currentLimit-NUMBER_POSTS_REQUEST); // skip the first 10 results
         // order posts by creation date (newest first)
         query.addDescendingOrder("createdAt");
         // start an asynchronous call for posts
