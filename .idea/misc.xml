@@ -8,10 +8,11 @@
         <entry key="app/src/main/res/drawable/postframe.xml" value="0.1775" />
         <entry key="app/src/main/res/drawable/ufi_heart_icon.xml" value="0.1775" />
         <entry key="app/src/main/res/layout/activity_launch.xml" value="0.26551361083984376" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.27877235851068605" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.24176646706586827" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_new_post.xml" value="0.2806456634963768" />
         <entry key="app/src/main/res/layout/activity_post_detail_view.xml" value="0.39079916170327966" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2509057971014493" />
         <entry key="app/src/main/res/layout/comment_item.xml" value="0.7635155379080718" />
         <entry key="app/src/main/res/layout/comment_view.xml" value="0.3660900718287418" />
         <entry key="app/src/main/res/layout/item_view.xml" value="0.4286688009244845" />

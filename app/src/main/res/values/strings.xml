@@ -17,4 +17,6 @@
     <string name="a_minute_ago">a minute ago</string>
     <string name="day">day</string>
     <string name="comment_here">Comment here!</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or">or</string>
 </resources>
